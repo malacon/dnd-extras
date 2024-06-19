@@ -1,0 +1,26 @@
+var iFileName = "Homebrew Syntax - MagicItemsList.js";
+
+RequiredSheetVersion("13.0.6");
+
+MagicItemsList["ring of volleys"] = {
+    name: "Ring of Volleys",
+    sortname: "Volleys, Ring of",
+    source: ["B", 0],
+    type: "ring",
+    rarity: "uncommon",
+    attunement: false,
+    weight: 0,
+    allowDuplicates: true,
+    description: "This golden ring is shaped like a barbed arrow bent to form a bypass ring shank. While wearing this ring, you can choose to summon a nocked arrow or bolt whenever you draw a bow or crossbow. The ammunition is magical and deals an extra 1d4 radiant damage to any target hit by it. An arrow or bolt vanishes if you don’t fire it right away and disappears right after it hits or misses.",
+    descriptionFull: "This golden ring is shaped like a barbed arrow bent to form a bypass ring shank. While wearing this ring, you can choose to summon a nocked arrow or bolt whenever you draw a bow or crossbow. The ammunition is magical and deals an extra 1d4 radiant damage to any target hit by it. An arrow or bolt vanishes if you don’t fire it right away and disappears right after it hits or misses.",
+    calcChanges: {
+        atkAdd: [
+            function(fields, v) {
+                if (v.ammoName === "nocked arrow or bolt" && (v.weaponName === "bow" || v.weaponName === "crossbow")) {
+                    fields.Description += (fields.Description ? '; ' : '') + '+1d4 radiant damage';
+                }
+            },
+            "While wearing the Ring of Volleys, you can choose to summon a nocked arrow or bolt whenever you draw a bow or crossbow. The ammunition is magical and deals an extra 1d4 radiant damage to any target hit by it."
+        ]
+    }
+};
